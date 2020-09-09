@@ -7,14 +7,13 @@ ENV version=1.3.2
 
 # Download statically compiled murmur and install it to /opt/murmur
 ADD https://github.com/mumble-voip/mumble/releases/download/${version}/murmur-static_x86-${version}.tar.bz2 /opt/
-RUN bzcat /opt/murmur-static_x86-${version}.tar.bz2 | tar -x -C /opt -f - \
-    && mv /opt/murmur-static_x86-${version}/murmur.x86 /opt/murmurd
+RUN bzcat /opt/murmur-static_x86-${version}.tar.bz2 | tar -x -C /opt -f -
 
 
 FROM busybox:latest AS server
 
 # Copy in our static binary
-COPY --from=builder /opt/murmurd /opt/murmurd
+COPY --from=builder /opt/murmur-static_x86-${version}/murmur.x86 /opt/murmurd
 
 # Copy in our slightly tweaked INI which points to our volume
 COPY murmur.ini /etc/murmur.ini
