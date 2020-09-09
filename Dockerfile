@@ -1,5 +1,7 @@
 FROM busybox:latest AS builder
-MAINTAINER Matt Kemp <matt@mattikus.com>
+LABEL FORKED_FROM="Matt Kemp"
+LABEL MAINTAINER="TylerY"
+LABEL MAINTAINER_EMAIL="issues@tylery.org"
 
 ENV version=1.3.2
 
