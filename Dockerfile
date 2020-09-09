@@ -21,6 +21,13 @@ COPY murmur.ini /etc/murmur.ini
 EXPOSE 64738/tcp 64738/udp
 
 # Read murmur.ini and murmur.sqlite from /data/
+
+RUN adduser -D -u 1000 -h /var/murmur murmur \
+    && mkdir /data \
+    && chown murmur:murmur -R /data
+
+USER murmur
+
 VOLUME ["/data"]
 
 # Run murmur
