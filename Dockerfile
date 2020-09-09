@@ -1,4 +1,4 @@
-FROM busybox:latest
+FROM busybox:latest AS builder
 MAINTAINER Matt Kemp <matt@mattikus.com>
 
 ENV version=1.3.2
@@ -8,6 +8,12 @@ ADD https://github.com/mumble-voip/mumble/releases/download/${version}/murmur-st
 RUN bzcat /opt/murmur-static_x86-${version}.tar.bz2 | tar -x -C /opt -f - && \
     rm /opt/murmur-static_x86-${version}.tar.bz2 && \
     mv /opt/murmur-static_x86-${version} /opt/murmur
+
+
+FROM busybox:latest AS server
+
+# Copy in our static binary
+COPY --from=builder /opt/murmur /opt/murmur
 
 # Copy in our slightly tweaked INI which points to our volume
 COPY murmur.ini /etc/murmur.ini
