@@ -21,12 +21,13 @@ COPY murmur.ini /etc/murmur.ini
 # Forward apporpriate ports
 EXPOSE 64738/tcp 64738/udp
 
-# Read murmur.ini and murmur.sqlite from /data/
-
+# add murmur user, set to UID 1000, and set home dir
+# create DIR and chown it. Prevents some permission issues
 RUN adduser -D -u 1000 -h /var/murmur murmur \
     && mkdir /data \
     && chown murmur:murmur -R /data
 
+# Read murmur.ini and murmur.sqlite from /data/
 VOLUME ["/data"]
 
 # Run murmur
