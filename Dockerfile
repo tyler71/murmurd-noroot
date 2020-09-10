@@ -21,7 +21,7 @@ FROM busybox:latest
 COPY --from=builder /opt/murmurd /opt/murmurd
 
 # Copy in our slightly tweaked INI which points to our volume
-COPY murmur.ini /etc/murmur.ini
+COPY data/murmur.ini /etc/murmur.ini
 
 # Forward appropriate ports
 EXPOSE 64738/tcp 64738/udp

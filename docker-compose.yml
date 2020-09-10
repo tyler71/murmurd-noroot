@@ -1,0 +1,13 @@
+version: '3.3'                                                                  
+services:                                                                       
+    murmur:                                                                     
+        restart: unless-stopped                                                 
+        ports:                                                                  
+            - '64738:64738'                                                     
+            - '64738:64738/udp'                                                 
+        volumes:                                                                
+            - './data/sqlite/:/data'                                            
+            - './data/murmur.ini:/etc/murmur.ini:ro'                     
+#           - '/etc/letsencrypt/live/domain.tld/fullchain.pem:/etc/cert/crt.pem:ro'
+#           - '/etc/letsencrypt/live/domain.tld/privkey.pem:/etc/cert/key.pem:ro'
+        image: tyler71/murmurd-noroot                                           
