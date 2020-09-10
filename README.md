@@ -8,14 +8,15 @@ Requirements:
 * [Docker-Compose](https://docs.docker.com/compose/install/)
 * Git
 
-## Description
-Usage should be as simple as 
+## Quickstart
+Setup should be as simple as running the following commands.  
+The last command will create a file called `adminpass.txt`. This contains the admin username and password.
 
 ```
 git clone https://github.com/tyler71/murmurd-noroot
 cd murmurd-noroot
 docker-compose up -d
-docker-compose logs -f 2>&1 | grep -oE "Password [a-Z]+ '[a-Z]+' set to .*"
+docker-compose logs -f 2>&1 | grep -o -m1 -E 'Password for .*$' | head -1 | tee adminpass.txt 
 ```
 
 On future runs,  
@@ -30,4 +31,4 @@ docker-compose down
 ```
 
 By default, the file `data/murmur.ini` is bound and used inside the container  
-The sqlite file used is stored in `data/sqlite`
+The sqlite file used is stored in `data/sqlite/murmur.sqlite`
