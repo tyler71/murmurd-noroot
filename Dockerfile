@@ -29,7 +29,7 @@ EXPOSE 64738/tcp 64738/udp
 # add murmur user with no password, set to UID 1000, and set home dir
 # create DIR and chown it. Prevents some permission issues
 RUN adduser -D -u 1000 -h /var/murmur murmur \
-    && mkdir /data \
+    && mkdir /data                           \
     && chown murmur:murmur -R /data
 
 # Read murmur.ini and murmur.sqlite from /data/
