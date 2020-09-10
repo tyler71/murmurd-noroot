@@ -3,6 +3,10 @@ Forked from `mattikus/docker-murmur` to provide some small features
 * Use docker-compose for easier permanent instance
 * Use unprivileged user
 ___
+Requirements:
+* [Docker](https://docs.docker.com/engine/install/)
+* [Docker-Compose](https://docs.docker.com/compose/install/)
+* Git
 
 ## Description
 Usage should be as simple as 
