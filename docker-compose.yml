@@ -2,6 +2,8 @@ version: '3.3'
 services:
     murmur:
         restart: unless-stopped
+        security_opt:
+            - 'no-new-privileges'
         ports:
             - '64738:64738'
             - '64738:64738/udp'
