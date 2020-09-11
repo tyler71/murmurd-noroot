@@ -20,14 +20,15 @@ FROM busybox:latest
 # Grab murmurd from builder stage
 COPY --from=builder /opt/murmurd /opt/murmurd
 
-# Copy in our slightly tweaked INI which points to our volume
+# Copy in our slightly tweaked INI which points to our volume 
+# and drops privileges to murmur user
 COPY data/murmur.ini /etc/murmur.ini
 
-# Forward appropriate ports
+# Announce appropriate ports
 EXPOSE 64738/tcp 64738/udp
 
-# add murmur user with no password, set to UID 1000, and set home dir
-# create DIR and chown it. Prevents some permission issues
+# Add murmur user with no password, set to UID 1000, and set home dir
+# Create DIR and chown it. Prevents some permission issues
 RUN adduser -D -u 1000 -h /var/murmur murmur \
     && mkdir /data                           \
     && chown murmur:murmur -R /data
@@ -35,6 +36,6 @@ RUN adduser -D -u 1000 -h /var/murmur murmur \
 # Read murmur.ini and murmur.sqlite from /data/
 VOLUME ["/data"]
 
-# Run murmur
+# Run murmurd
 ENTRYPOINT ["/opt/murmurd", "-fg", "-v"]
 CMD ["-ini", "/etc/murmur.ini"]
