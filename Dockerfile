@@ -23,6 +23,7 @@ COPY --from=builder /opt/murmurd /opt/murmurd
 # Copy in our slightly tweaked INI which points to our volume 
 # and drops privileges to murmur user
 COPY data/murmur.ini /etc/murmur.ini
+COPY entrypoint.sh /entrypoint.sh
 
 # Announce appropriate ports
 EXPOSE 64738/tcp 64738/udp
@@ -37,5 +38,4 @@ RUN adduser -D -u 1000 -h /var/murmur murmur \
 VOLUME ["/data"]
 
 # Run murmurd
-ENTRYPOINT ["/opt/murmurd", "-fg", "-v"]
-CMD ["-ini", "/etc/murmur.ini"]
+ENTRYPOINT ["/entrypoint.sh"]

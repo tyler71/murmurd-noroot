@@ -29,6 +29,14 @@ docker-compose up -d
 ```bash
 docker-compose down
 ```
+
+### ENV
+
+Variables in `.env` are loaded into the container at runtime.  
+To set the SuperUser password on first run, place this in `.env`
+```
+SUPERUSER_PASSWORD=mypassword
+```
 ___
 Forked from `mattikus/docker-murmur` to provide some small features
 * Reduced size with multi-stage build
