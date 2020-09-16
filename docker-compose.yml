@@ -12,6 +12,6 @@ services:
         volumes:
             - './data/sqlite/:/data'
             - './data/murmur.ini:/etc/murmur.ini:ro'
-#           - '/etc/letsencrypt/live/domain.tld/fullchain.pem:/etc/cert/crt.pem:ro'
-#           - '/etc/letsencrypt/live/domain.tld/privkey.pem:/etc/cert/key.pem:ro'
+#            - '/etc/letsencrypt/live/domain.tld/fullchain.pem:/etc/cert/crt.pem:ro'
+#            - '/etc/letsencrypt/live/domain.tld/privkey.pem:/etc/cert/key.pem:ro'
         image: tyler71/murmurd-noroot
