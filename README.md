@@ -34,6 +34,7 @@ docker-compose restart
 
 ## Info
 
+**Server Config**
 By default, the file `data/murmur.ini` is bound to the container and is used for [server config](https://wiki.mumble.info/wiki/Murmurguide#Configuring_ini_File).
  Just restart the container if adjusted.
 
@@ -55,10 +56,10 @@ SUPERUSER_PASSWORD=mypassword
 ### SSL
 If you are using [Let's Encrypt](https://letsencrypt.org/getting-started), you can specify them for your server.
  To include them, we'll bind them inside the container on runtime.  
-Murmurd takes the certificates as root before dropping privileges, so there shouldn't be any permission issues
+Murmurd loads the certificates before dropping privileges, so there shouldn't be any permission issues
  and should be able to take them from anywhere, such as Caddy's [stored certs](https://caddyserver.com/docs/automatic-https#storage).
 ```
-# Uncomment this
+# Uncomment sslCert and sslKey
 # data/murmur.ini
 ;sslCert=/etc/cert/crt.pem
 ;sslKey=/etc/cert/key.pem

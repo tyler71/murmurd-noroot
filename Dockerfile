@@ -8,9 +8,9 @@ ENV version=1.3.2
 # Download statically compiled murmur and install it to /opt/murmurd
 WORKDIR /opt
 RUN wget "https://github.com/mumble-voip/mumble/releases/download/${version}/murmur-static_x86-${version}.tar.bz2" \
-        -O murmurd.bz2                                                                                             \
+        -O murmurd.tar.bz2                                                                                         \
  && tar --bzip2 --extract                                                                                          \
-        --file murmurd.bz2                                                                                         \ 
+        --file murmurd.tar.bz2                                                                                     \ 
         murmur-static_x86-${version}/murmur.x86                                                                    \
         && mv murmur-static_x86-${version}/murmur.x86 /opt/murmurd
 
@@ -28,10 +28,10 @@ COPY entrypoint.sh /entrypoint.sh
 # Announce appropriate ports
 EXPOSE 64738/tcp 64738/udp
 
-# Add murmur user with no password, set to UID 1000, and set home dir
+# Add murmur user with no home dir or password, set to UID 1000
 # Create DIR and chown it. Prevents some permission issues
-RUN adduser -D -u 1000 -h /var/murmur murmur \
-    && mkdir /data                           \
+RUN adduser -H -D -u 1000 murmur   \
+    && mkdir /data                 \
     && chown murmur:murmur -R /data
 
 # Read murmur.ini and murmur.sqlite from /data/
