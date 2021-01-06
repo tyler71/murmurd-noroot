@@ -47,8 +47,18 @@ Backing up the files in `data/` should make it easy to restore.
 │       └── murmur.sqlite
 ```
 
-Variables in `.env` are loaded into the container at runtime.  
-To set the SuperUser password on first run, place this in `.env`
+Variables in `.env` are loaded into the container at runtime.
+
+### SuperUser
+
+To set the SuperUser password on first run
+Uncomment these two lines in docker-compose.yml
+
+```
+#       env_file:
+#           - '.env'
+```
+and place this in `.env`
 ```
 SUPERUSER_PASSWORD=mypassword
 ```

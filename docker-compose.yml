@@ -4,8 +4,8 @@ services:
         restart: unless-stopped
         security_opt:
             - 'no-new-privileges'
-        env_file:
-            - '.env'
+#       env_file:
+#           - '.env'
         ports:
             - '64738:64738'
             - '64738:64738/udp'
