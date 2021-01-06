@@ -81,7 +81,6 @@ Murmurd loads the certificates before dropping privileges, so there shouldn't be
 ```
 ___
 Forked from `mattikus/docker-murmur` to provide some small features
-* Reduced size with multi-stage build
 * Use docker-compose for easier permanent instance
 * Use unprivileged user
 
