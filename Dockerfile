@@ -3,7 +3,7 @@ LABEL FORKED_FROM_AUTHOR="Matt Kemp"
 LABEL MAINTAINER="TylerY"
 LABEL MAINTAINER_EMAIL="issues@tylery.org"
 
-ENV version=1.3.2
+ENV version=1.3.4
 
 # Download statically compiled murmur and install it to /opt/murmurd
 WORKDIR /opt
